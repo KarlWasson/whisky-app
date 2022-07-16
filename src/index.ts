@@ -1,15 +1,12 @@
 /**
  * Required External Modules
  */
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 import express from "express";
-import path from "path";
 import cors from "cors";
 import helmet from "helmet";
+import { itemsRouter } from "./items/items.router";
 
-import expressSession from "express-session";
-import passport from "passport";
-import Auth0Strategy from "passport-auth0";
 
 // initialize configuration
 dotenv.config();
@@ -33,17 +30,18 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use("/api/menu/items", itemsRouter);
 
 
 // Configure Express to use EJS
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+// app.set("views", path.join(__dirname, "views"));
+// app.set("view engine", "ejs");
 
 // define a route handler for the default home page
-app.get("/", (req, res) => {
-    // render the index template
-    res.render("index");
-});
+// app.get("/", (req, res) => {
+//     // render the index template
+//     res.render("index");
+// });
 
 /**
  * Server Activation

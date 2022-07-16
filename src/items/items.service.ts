@@ -65,11 +65,12 @@ export const update = async (
         return null;
     }
 
-    items[id] = { id,, ...itemUpdate};
+    items[id] = { id, ...itemUpdate};
 
     return items[id];
 }
 
+// delete existing item
 export const remove =async (id:number) => {
     const item = await find(id);
 
